@@ -18,7 +18,7 @@ public class PokemonBO {
     public PokemonTO save(PokemonTO pokemon) {
         pokemonDAO = new PokemonDAO();
         // Lógica de negócio pode ser adicionada aqui
-        if (pokemon.getDataDaCaptura().isBefore(LocalDate.now())) {
+        if (pokemon.getDataDaCaptura().isAfter(LocalDate.now())) {
             return null;
         }
         return pokemonDAO.save(pokemon);

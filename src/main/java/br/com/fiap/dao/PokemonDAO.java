@@ -41,7 +41,7 @@ public class PokemonDAO {
     }
 
     public PokemonTO save(PokemonTO pokemon){
-        String sql = "insert into ddd_pokemos(nome, altura, peso, categoria, data_de_captura) values(?,?,?,?,?)";
+        String sql = "insert into ddd_pokemons(nome, altura, peso, categoria, data_da_captura) values(?,?,?,?,?)";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql))
         {
             ps.setString(1, pokemon.getNome());
