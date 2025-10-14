@@ -26,6 +26,21 @@ public class PokemonResource {
         return response.build();
     }
 
+    @GET
+    @Path("/{codigo}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findByCodigo(@PathParam("codigo") Long codigo){
+        PokemonTO resultado = pokemonBO.findByCodigo(codigo);
+        Response.ResponseBuilder response = null;
+        if (resultado != null) {
+            response = Response.ok(); // 200 OK
+        } else {
+            response = Response.status(404); // 404 Not Found
+    }
+        response.entity(resultado);
+        return response.build();
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response save(PokemonTO pokemon){
@@ -34,7 +49,7 @@ public class PokemonResource {
         if (resultado != null) {
             response = Response.created(null); // 201 CREATED
         } else {
-            response = Response.status(404); // 404 Not Found
+            response = Response.status(400); // 400 Bad Request
     }
         response.entity(resultado);
         return response.build();
