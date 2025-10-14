@@ -15,12 +15,15 @@ public class PokemonBO {
         return pokemonDAO.findAll();
     }
 
-    public PokemonTO save(PokemonTO pokemon) {
+    public PokemonTO findByCodigo(Long codigo){
         pokemonDAO = new PokemonDAO();
         // Lógica de negócio pode ser adicionada aqui
-        if (pokemon.getDataDaCaptura().isAfter(LocalDate.now())) {
-            return null;
-        }
+        return pokemonDAO.findByCodigo(codigo);
+    }
+
+    public PokemonTO save(PokemonTO pokemon) {
+        // Lógica de negócio pode ser adicionada aqui
+
         return pokemonDAO.save(pokemon);
     }
 }
