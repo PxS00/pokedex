@@ -37,7 +37,7 @@ public class PokemonDAO {
         return pokemons;
     }
 
-    public PokemonTO findByCodigo(long codigo) {
+    public PokemonTO findByCodigo(Long codigo) {
         PokemonTO pokemon = new PokemonTO();
         String sql = "select * from ddd_pokemons where codigo = ?";
 
