@@ -2,6 +2,7 @@ package br.com.fiap.resource;
 
 import br.com.fiap.bo.PokemonBO;
 import br.com.fiap.to.PokemonTO;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -43,7 +44,7 @@ public class PokemonResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(PokemonTO pokemon){
+    public Response save(@Valid PokemonTO pokemon){
         PokemonTO resultado = pokemonBO.save(pokemon);
         Response.ResponseBuilder response = null;
         if (resultado != null) {
@@ -52,6 +53,18 @@ public class PokemonResource {
             response = Response.status(400); // 400 Bad Request
     }
         response.entity(resultado);
+        return response.build();
+    }
+
+    @DELETE
+    @Path("/{codigo}")
+    public Response delete(@PathParam("codigo") Long codigo){
+        Response.ResponseBuilder response = null;
+        if (pokemonBO.delete(codigo)) {
+            response = Response.status(204); // 204 No Content
+        } else {
+            response = Response.status(404); // 404 Not Found
+        }
         return response.build();
     }
 }
