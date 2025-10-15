@@ -23,7 +23,11 @@ public class PokemonBO {
 
     public PokemonTO save(PokemonTO pokemon) {
         // Lógica de negócio pode ser adicionada aqui
-
         return pokemonDAO.save(pokemon);
+    }
+    public boolean delete(Long codigo){
+        pokemonDAO = new PokemonDAO();
+        // Lógica de negócio pode ser adicionada aqui
+        return pokemonDAO.delete(codigo);
     }
 }
