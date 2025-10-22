@@ -30,4 +30,10 @@ public class PokemonBO {
         // Lógica de negócio pode ser adicionada aqui
         return pokemonDAO.delete(codigo);
     }
+
+    public PokemonTO update(PokemonTO pokemon){
+        pokemonDAO = new PokemonDAO();
+        // Lógica de negócio pode ser adicionada aqui
+        return pokemonDAO.update(pokemon);
+    }
 }
